@@ -8,16 +8,18 @@ module Mux#(
     input s,
     output [WIDTH-1:0] o
 );
-    assign o = s ? b : a;
-//    assign o = a & ~s | b & s;
+//    assign o = s ? b : a;
+    assign o = a & {WIDTH {~s}} | b & {WIDTH {s}};
 endmodule
 
 module tb;
-
-    reg [32:0]a = 6; 
-    reg [32:0]b = 5;
+    
+    parameter WIDTH = 10;
+    
+    reg [WIDTH-1:0]a = 6; 
+    reg [WIDTH-1:0]b = 5;
     reg s;
-    wire [32:0]o;
+    wire [WIDTH-1:0]o;
     
     initial begin
         #10;
@@ -32,7 +34,7 @@ module tb;
         $finish;
     end
 
-    Mux #(4) uut (
+    Mux #(WIDTH) uut (
         .a(a),
         .b(b),
         .s(s),
@@ -40,5 +42,3 @@ module tb;
     );
 
 endmodule
-
-
