@@ -1,4 +1,25 @@
 `timescale 1ns / 1ps
+module div(
+    input clk,
+    output reg clk_out
+);
+
+reg [3:0]c;    
+    
+initial begin 
+    clk_out = clk;
+    c = 0;
+end    
+    
+always@(clk)begin
+    c = c + 1;
+    if(c == 2)begin 
+        clk_out = ~clk_out;
+        c = 0;
+    end
+end
+
+endmodule
 
 module digdec(
    input [3:0]in,
@@ -245,6 +266,7 @@ wire err, zero, und_of;
 reg [1:0]muxsel;
 reg [11:0]muxout;
 reg [3:0]earf;
+wire clk_out;
 
 // codificator jos
 always@(*) begin
@@ -278,7 +300,7 @@ always@(*) begin
 end
 
 top top(
-    .clk(clk),
+    .clk(clk_out),
     .in0(muxout[3:0]),
     .in1(muxout[7:4]),
     .in2(muxout[11:8]),
@@ -296,6 +318,11 @@ ALU  ALU(
         .l(zero),
         .und_of(und_of)
 );  
+
+div div(
+    .clk(clk),
+    .clk_out(clk_out)
+);
     
 endmodule
 
@@ -312,8 +339,8 @@ wire a, b, c, d, e, f, g;
 wire [11:0]alu_result;
 
 initial begin
-    r0 = 8000;
-    r1 = 200;
+    r0 = 11;
+    r1 = 8;
     rs = 0;
     bt = 0;
     repeat(25)
@@ -334,5 +361,3 @@ top_top top_top(
     .alu_result(alu_result)
 );
 endmodule
-
-
