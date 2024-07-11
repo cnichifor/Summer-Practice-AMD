@@ -177,14 +177,16 @@ module dec(
 endmodule
 
 module cnt(
-    input clk,
-    output reg [1:0] o
+    clk,
+    o
 );
 
-initial o = 0;
+    input clk;
+    output reg [1:0]o = 0;
 
-always @(posedge clk)
+always @(posedge clk) begin
     o = o + 1;
+end
     
 endmodule
 
