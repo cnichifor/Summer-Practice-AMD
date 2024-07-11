@@ -6,9 +6,10 @@ module top_top(
     input [3:0]bt,
     input clk,
     output a, b, c, d, e, f, g,
-    output [3:0]dout,
-    output [11:0]alu_result
+    output [3:0]dout
 );
+
+wire [11:0]alu_result;
 
 wire err, zero, und_of;
 reg [1:0]muxsel;
@@ -80,42 +81,39 @@ div div(
     
 endmodule
 
-module tb();
+//module tb();
 
-reg clk = 0;
-reg [3:0]bt;
-reg [11:0]switch;
+//reg clk = 0;
+//reg [3:0]bt;
+//reg [11:0]switch;
 
-wire [3:0]dout;
-wire a, b, c, d, e, f, g;
+//wire [3:0]dout;
+//wire a, b, c, d, e, f, g;
 
-wire [11:0]alu_result;
 
-initial begin
-    #10;
-    bt = 12;
-    switch = 0;
-    #10;
-    bt = 9;
-    switch = 200;
-    #10;
-    bt = 10;
-    switch = 40; 
-    #10;
-    bt = 0;
-    repeat(25)
-        #10 clk = ~clk;
+//initial begin
+//    #10;
+//    bt = 12;
+//    switch = 0;
+//    #10;
+//    bt = 9;
+//    switch = 201;
+//    #10;
+//    bt = 10;
+//    switch = 40; 
+//    #10;
+//    bt = 0;
+//    repeat(25)
+//        #10 clk = ~clk;
         
-     #10 $finish;
-end
+//     #10 $finish;
+//end
 
-top_top top_top(
-    .clk(clk),
-    .bt(bt),
-    .switch(switch),
-    .a(a), .b(b), .c(c), .d(d), .e(e), .f(f), .g(g),
-    .dout(dout),
-    
-    .alu_result(alu_result)
-);
-endmodule
+//top_top top_top(
+//    .clk(clk),
+//    .bt(bt),
+//    .switch(switch),
+//    .a(a), .b(b), .c(c), .d(d), .e(e), .f(f), .g(g),
+//    .dout(dout)
+//);
+//endmodule
