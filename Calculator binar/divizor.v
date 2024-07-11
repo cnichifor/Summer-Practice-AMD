@@ -1,20 +1,16 @@
 `timescale 1ns / 1ps
 
 module div(
-    input clk,
-    output reg clk_out
+    clk,
+    clk_out
 );
-
-reg [3:0]c;    
+input clk;
+reg [31:0]c = 0; 
+output reg clk_out = 0;
     
-initial begin 
-    clk_out = clk;
-    c = 0;
-end    
-    
-always@(clk)begin
+always@(posedge clk)begin
     c = c + 1;
-    if(c == 2)begin 
+    if(c == 50000)begin 
         clk_out = ~clk_out;
         c = 0;
     end
