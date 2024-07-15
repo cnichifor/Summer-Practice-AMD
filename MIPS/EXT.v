@@ -2,28 +2,30 @@
 
 module EXT(
     in,
+    extop,
     out
 );
 
 input [15:0]in;
+input extop;
 
 output [31:0]out;
 
-assign out = in[15] ? 32'd4294901760 + in : in;
+assign out = in[15] & extop ? 32'd4294901760 + in : in;
 
 endmodule
 
-module tb();
-    reg [15:0]in;
-    wire [31:0]out;
+//module tb();
+//    reg [15:0]in;
+//    wire [31:0]out;
     
-    initial begin
-        #10 in = 32767;
-        #10 in = 32768;
-    end
+//    initial begin
+//        #10 in = 32767;
+//        #10 in = 32768;
+//    end
     
-    EXT EXT(
-        .in(in),
-        .out(out)
-    );
-endmodule
+//    EXT EXT(
+//        .in(in),
+//        .out(out)
+//    );
+//endmodule
