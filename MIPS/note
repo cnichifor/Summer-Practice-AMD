@@ -39,4 +39,23 @@ fbonacci:
 08
 20
 
+seteaza 1 in reg il salveaza in mem seteaza 0 in reg incarca 1 din mem in reg:
+20
+00
+00
+01
 
+ae
+00
+00
+00
+
+20
+00
+ff
+ff
+
+8e
+00
+00
+00
