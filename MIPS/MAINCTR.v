@@ -185,6 +185,20 @@ always@(*)begin
         regwrite <= 0;
         aluop <= 4;
     end
+    
+    //p beq
+    else if(opcode == 11) begin
+        varadd <= 1;
+        jump <= 0;
+        pcsrc <= zero;
+        regdst <= 0; 
+        extop <= 1;
+        alusrc <= 0; 
+        mem2reg <= 1;
+        memwrite <= 0; 
+        regwrite <= 0;
+        aluop <= 3;
+    end
 
     
     else begin
